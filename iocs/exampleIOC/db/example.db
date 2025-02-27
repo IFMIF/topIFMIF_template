@@ -1,0 +1,47 @@
+# Very EPICS, much database, such PV
+
+record(ao, "$(P):$(R):width") {
+    field(DESC, "Rectangle width")
+    field(VAL , "1.0")
+    field(EGU , "m")
+    field(DRVL, "0.0")
+    field(PINI, "YES")
+
+    # Alarm threshold
+    field(LOLO, "0.1")
+    field(LLSV, "MINOR")
+    field(LOW, "0.0")
+    field(LSV, "MAJOR")
+}
+
+record(ao, "$(P):$(R):height") {
+    field(DESC, "Rectangle height")
+    field(VAL , "1.0")
+    field(EGU , "m")
+    field(DRVL, "0.0")
+    field(PINI, "YES")
+
+    # Alarm threshold
+    field(LOLO, "0.1")
+    field(LLSV, "MINOR")
+    field(LOW, "0.0")
+    field(LSV, "MAJOR")
+}
+
+record(calc, "$(P):$(R):perimeter") {
+    field(INPA, "$(P):$(R):width CP")
+    field(INPB, "$(P):$(R):height CP")
+    field(DESC, "Rectangle perimeter")
+    field(CALC, "2 * A + 2 * B")
+    field(SCAN, "Passive")
+    field(EGU, "m")
+}
+
+record(calc, "$(P):$(R):area") {
+    field(INPA, "$(P):$(R):width CP")
+    field(INPB, "$(P):$(R):height CP")
+    field(DESC, "Rectangle area")
+    field(CALC, "A * B")
+    field(SCAN, "Passive")
+    field(EGU, "m")
+}

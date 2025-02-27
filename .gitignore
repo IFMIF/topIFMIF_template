@@ -1,0 +1,9 @@
+# EPICS stuff
+/iocs/**/RELEASE.local
+/iocs/**/CONFIG_SITE.local
+/iocs/**/O.*/
+/iocs/target/
+.iocsh_history
+
+# Python stuff
+.venv
