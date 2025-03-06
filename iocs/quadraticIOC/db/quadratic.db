@@ -1,0 +1,57 @@
+# Very EPICS, much database, such PV
+
+record(ao, "$(P):$(R):a") {
+    field(DESC, "a*x^2 + b*x + c = 0")
+    field(VAL , "1.0")
+    field(DRVL, "0.0")
+    field(PINI, "YES")
+}
+
+record(ao, "$(P):$(R):b") {
+    field(DESC, "a*x^2 + b*x + c = 0")
+    field(VAL , "1.0")
+    field(DRVL, "0.0")
+    field(PINI, "YES")
+}
+
+record(ao, "$(P):$(R):c") {
+    field(DESC, "a*x^2 + b*x + c = 0")
+    field(VAL , "1.0")
+    field(DRVL, "0.0")
+    field(PINI, "YES")
+}
+
+record(calc, "$(P):$(R):det") {
+    field(INPA, "$(P):$(R):a CP")
+    field(INPB, "$(P):$(R):b CP")
+    field(INPC, "$(P):$(R):c CP")
+    field(DESC, "Determinant")
+    field(CALC, "b*b - 4*a*c")
+    field(SCAN, "Passive")
+
+    # Alarm threshold
+    field(LOLO, "0.1")
+    field(LLSV, "MINOR")
+    field(LOW, "0.0")
+    field(LSV, "MAJOR")
+}
+
+record(calc, "$(P):$(R):x1") {
+    field(INPA, "$(P):$(R):a CP")
+    field(INPB, "$(P):$(R):b CP")
+    field(INPC, "$(P):$(R):c CP")
+    field(INPD, "$(P):$(R):det CP")
+    field(DESC, "First solution")
+    field(CALC, "(-B + SQR(D))/(2*A)")
+    field(SCAN, "Passive")
+}
+
+record(calc, "$(P):$(R):x2") {
+    field(INPA, "$(P):$(R):a CP")
+    field(INPB, "$(P):$(R):b CP")
+    field(INPC, "$(P):$(R):c CP")
+    field(INPD, "$(P):$(R):det CP")
+    field(DESC, "Second solution")
+    field(CALC, "(-B - SQR(D))/(2*A)")
+    field(SCAN, "Passive")
+}

@@ -6,28 +6,28 @@ TOP = ../..
 include $(TOP)/configure/CONFIG
 
 # Name of the IOC
-PROD_IOC = example
+PROD_IOC = quadratic
 
 # Database definition files
-DBD += example.dbd
-example_DBD += base.dbd
-example_DBD += pvxsIoc.dbd
-example_DBD += asynRecord.dbd
-example_DBD += drvAsynIPPort.dbd
-example_DBD += drvAsynSerialPort.dbd
+DBD += quadratic.dbd
+quadratic_DBD += base.dbd
+quadratic_DBD += pvxsIoc.dbd
+quadratic_DBD += asynRecord.dbd
+quadratic_DBD += drvAsynIPPort.dbd
+quadratic_DBD += drvAsynSerialPort.dbd
 
 # Source files
 # <name>_registerRecordDeviceDriver.cpp will be created from <name>.dbd
-example_SRCS += example_registerRecordDeviceDriver.cpp
-example_SRCS_DEFAULT += main.cpp
+quadratic_SRCS += quadratic_registerRecordDeviceDriver.cpp
+quadratic_SRCS_DEFAULT += main.cpp
 
 # Add the support libraries needed by this application
-example_LIBS += calc asyn
+quadratic_LIBS += calc asyn
 
 # Finally include the libraries from base
-example_LIBS += pvxsIoc pvxs
-example_LIBS += $(EPICS_BASE_IOC_LIBS)
-$(info Linking with ${example_LIBS})
+quadratic_LIBS += pvxsIoc pvxs
+quadratic_LIBS += $(EPICS_BASE_IOC_LIBS)
+$(info Linking with ${quadratic_LIBS})
 
 # EPICS build rules
 include $(TOP)/configure/RULES

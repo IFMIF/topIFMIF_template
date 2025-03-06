@@ -1,0 +1,15 @@
+version: '3'
+services:
+  rectangle_ioc:
+    build:
+      context: .
+      target: rectangle_ioc
+    ports:
+     - "5064:5064"
+
+  quadratic_ioc:
+    build:
+      context: .
+      target: quadratic_ioc
+    ports:
+     - "5064:5064"

@@ -1,12 +1,12 @@
 [Unit]
-Description=Example IOC
+Description=Quadratic IOC
 After=network.target
 
 [Service]
 Type=simple
 User=epics
 Group=epics
-WorkingDirectory=/home/epics/exampleIOC/boot/
+WorkingDirectory=/home/epics/quadraticIOC/boot/
 ExecStart=/usr/bin/procServ --foreground --logfile - --port 20000 ./st.cmd
 Restart=always
 SyslogIdentifier=%N

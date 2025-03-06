@@ -1,4 +1,4 @@
-# exampleIOC
+# rectangleIOC
 
 A simple IOC that calculates the area and perimeter of a rectangle. When running, the IOC will create 4 PVs:
 

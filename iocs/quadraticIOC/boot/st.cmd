@@ -1,19 +1,19 @@
-#!../bin/linux-x86_64/example
+#!../bin/linux-x86_64/quadratic
 
 ## Environment variables
 epicsEnvSet("CURRENT_DIR", ${PWD})
 epicsEnvSet("P", "my-awesome-ioc")
-epicsEnvSet("R", "rectangle")
+epicsEnvSet("R", "quadratic")
 
 ## Register all support components.
 cd ../dbd
-dbLoadDatabase("example.dbd")
-example_registerRecordDeviceDriver(pdbbase)
+dbLoadDatabase("quadratic.dbd")
+quadratic_registerRecordDeviceDriver(pdbbase)
 
 ## Load record instances. Sometimes DB files contain relative references to other files,
 ## so it is safer to jump into the DB folder, load the files, and then go back to the original folder.
 cd ../db
-dbLoadRecords("example.db","P=$(P),R=$(R)")
+dbLoadRecords("quadratic.db","P=$(P),R=$(R)")
 cd ${CURRENT_DIR}
 
 ## Start the IOC
