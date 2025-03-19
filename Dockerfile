@@ -7,7 +7,7 @@ MAINTAINER pepito@gmail.com
 
 COPY iocs/ /work/iocs/
 WORKDIR /work/iocs/
-RUN cp /opt/epics-7.0/*.local .
+RUN cp /opt/epics-7.0/RELEASE.local configure/
 RUN make
 
 # --------------------------------------------------------------------------------------------------------------------
