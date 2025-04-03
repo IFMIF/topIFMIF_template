@@ -17,6 +17,8 @@ The resulting structure is organized as follows:
 - `./target`    -> The output of the compilation process.
 - `Makefile`    -> The instructions to compile all the IOCs.
 
+## Compiling IOCs
+
 To compile the IOCs, please follow these instructions:
 
 - Download and install [the official EPICS distribution for LIPAc](https://github.com/IFMIF/epics-7.0/).
@@ -31,12 +33,14 @@ The output artifacts will be located in the `target/` folder, one independent su
 - `./dbd`  -> EPICS record definition files, including the ones required for the support modules.
 - `./lib`  -> Additional libraries. Usually this folder is empty.
 
+## Running IOCs
+
 To run an IOC locally:
 
 - Go to `./target/${IOC}/boot`
 - Run `st.cmd`
 
-To deploy your IOC in production:
+To deploy your IOC in production as a bare SystemD service:
 
 - Install the minimum dependencies:
     - `readline`
@@ -44,10 +48,18 @@ To deploy your IOC in production:
     - `procServ`
 - Copy the folder `./target/xxxIOC` wherever you want.
 - Adjust the `st.cmd` file according to your system.
-- Maybe install the SystemD service file.
+- Install the SystemD service file into `/etc/systemd/system/`.
+- Enable/start your new service. 
 - That's it!
 
-# TODO
+To deploy your IOC as a container:
 
-- Define the procedure to deploy the IOC as containers.
+- Run `build_images.sh`
+- Test your images locally with `docker run`
+- Run `push_images.sh` to upload the images to the LIPAc registry.
+- In the target environment, copy the quadlet files. Follow the instructions of the `quadlets` folder.
+
+## TODO
+
 - Use a newer, more friendly build tool like CMake or Meson instead of Makefiles.
+- Integrate the compilation process with GitLab runners.

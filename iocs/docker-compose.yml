@@ -1,4 +1,6 @@
 version: '3'
+name: topIFMIF_template
+
 services:
   rectangle_ioc:
     build:

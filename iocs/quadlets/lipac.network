@@ -1,0 +1,11 @@
+[Unit]
+Description=LIPAc Network
+
+[Network]
+NetworkName=lipac
+Driver=macvlan
+Options=parent=ens18
+Subnet=192.168.10.0/24
+Gateway=192.168.10.254
+#IPRange=192.168.10.128/25
+IPRange=192.168.10.101-192.168.10.210

@@ -1,0 +1,38 @@
+services:
+    rectangle_ioc:
+        image: "containers.ifmif.org/topifmif_template_rectangle_ioc"
+        tty: true
+        stdin_open: true
+        networks:
+            - lipac
+            - internalbr
+
+    quadratic_ioc:
+        image: "containers.ifmif.org/topifmif_template_quadratic_ioc"
+        tty: true
+        stdin_open: true
+        networks:
+            - lipac
+            - internalbr
+
+networks:
+    lipac:
+        driver: macvlan
+        driver_opts:
+            parent: eth0
+            macvlan_mode: bridge
+        ipam:
+            driver: default
+            config:
+                - subnet: 192.168.85.0/24
+                  gateway: 192.168.85.1
+                  ip_range: 192.168.85.0/24
+                  aux_addresses:
+                    host: 192.168.85.2
+
+    internalbr:
+        driver: bridge
+        enable_ipv6: true
+        ipam:
+            config:
+                - subnet: fd6b:5050:8947:22cc::/64

@@ -1,0 +1,19 @@
+[Unit]
+Description=Quadratic IOC
+
+[Container]
+Image=containers.ifmif.org/topifmif_template_quadratic_ioc
+AutoUpdate=registry
+Network=lipac.network
+PodmanArgs=-it
+Volume=/data:/data
+User=1000
+Environment=EPICS_IOCSH_HISTFILE=/data/%N/iocsh_history
+
+[Service]
+Restart=always
+# Create the `Volume` location before starting the container:
+ExecStartPre=mkdir -p /data/%N/
+
+[Install]
+WantedBy=default.target

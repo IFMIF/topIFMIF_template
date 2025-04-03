@@ -14,6 +14,7 @@ quadratic_registerRecordDeviceDriver(pdbbase)
 ## so it is safer to jump into the DB folder, load the files, and then go back to the original folder.
 cd ../db
 dbLoadRecords("quadratic.db","P=$(P),R=$(R)")
+dbLoadRecords("ioc.db","IOCNAME=QUADRATIC,TODFORMAT=%Y/%m/%d %H:%M:%S")
 cd ${CURRENT_DIR}
 
 ## Start the IOC
