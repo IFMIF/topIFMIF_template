@@ -1,12 +1,15 @@
-EPICS_BASE=/opt/epics-7.0//base
-SUPPORT=/opt/epics-7.0//support
-DEVICES=/opt/epics-7.0//devices
+EPICS_BASE=/opt/epics-7.0/base
+SUPPORT=/opt/epics-7.0/support
+
+# ---------------------------------------------------------------------------------------------------------------------
+# Location of the EPICS support modules.
+#
+# WARNING: if you add new entries here, be extremely careful that there are no white spaces at the end of each line,
+# otherwise compilation will fail spectacularly.
+# ---------------------------------------------------------------------------------------------------------------------
 
 # Use our own PCRE library
 PCRE=$(SUPPORT)/pcre
-#undefine PCRE
-#PCRE_LIB=/usr/lib/x86_64-linux-gnu
-#PCRE_INCLUDE=/usr/include
 
 # EPICS support modules
 ASYN=$(SUPPORT)/asyn
@@ -29,8 +32,3 @@ SYMB=$(SUPPORT)/symb
 
 # The following must be defined for motorMXmotor
 #!MX=$(SUPPORT)/mx/mx
-
-# Additional device support
-ADAS=$(DEVICES)/adas
-AGILENT_E364XA=$(DEVICES)/agilent_e364xa
-GRAPHTEC_GL820=$(DEVICES)/graphtec_GL820

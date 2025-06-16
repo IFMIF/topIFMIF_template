@@ -1,2 +1,10 @@
-ENABLE_STATIC=YES
-STATIC_BUILD=YES
+# Transport-independent RPC
+TIRPC=YES
+
+# PCRE
+USE_PCRE=YES
+
+# Build static libraries, but not static binaries
+SHARED_LIBRARIES=YES
+ENABLE_STATIC=NO
+STATIC_BUILD=NO

@@ -2,11 +2,11 @@
 # Build all the IOCs
 # --------------------------------------------------------------------------------------------------------------------
 
-FROM ghcr.io/ifmif/lipac-dev as base
+FROM ghcr.io/ifmif/lipac-epics as build
 
 COPY . /work/iocs/
 WORKDIR /work/iocs/
-RUN cp /opt/epics-7.0/RELEASE.local configure/
+RUN cp /opt/epics-7.0/*.local configure/
 RUN make clean
 RUN make
 
@@ -14,10 +14,9 @@ RUN make
 # First IOC
 # --------------------------------------------------------------------------------------------------------------------
 
-FROM ghcr.io/ifmif/lipac-prod AS rectangle_ioc
-
-COPY --from=base /work/iocs/target/rectangle_ioc/ /opt/rectangle_ioc/
-WORKDIR /opt/rectangle_ioc/boot/
+FROM ghcr.io/ifmif/lipac-epics as ioc_rectangle
+COPY --from=build /work/iocs/target/ioc_rectangle/ /opt/ioc_rectangle/
+WORKDIR /opt/ioc_rectangle/boot/
 ENTRYPOINT ["./st.cmd"]
 
 #EXPOSE 5049/udp
@@ -30,10 +29,9 @@ ENTRYPOINT ["./st.cmd"]
 # Second IOC
 # --------------------------------------------------------------------------------------------------------------------
 
-FROM ghcr.io/ifmif/lipac-prod AS quadratic_ioc
-
-COPY --from=base /work/iocs/target/quadratic_ioc/ /opt/quadratic_ioc/
-WORKDIR /opt/quadratic_ioc/boot/
+FROM ghcr.io/ifmif/lipac-epics as ioc_quadratic
+COPY --from=build /work/iocs/target/ioc_quadratic/ /opt/ioc_quadratic/
+WORKDIR /opt/ioc_quadratic/boot/
 ENTRYPOINT ["./st.cmd"]
 
 #EXPOSE 5049/udp

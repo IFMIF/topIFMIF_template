@@ -15,7 +15,7 @@ endef
 
 TOP_TARGETS := all clean
 
-SOURCE_DIRS := $(wildcard *_ioc)
+SOURCE_DIRS := $(wildcard ioc_*)
 
 TARGET_DIR = $(CURDIR)/target
 
