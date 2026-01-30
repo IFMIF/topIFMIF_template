@@ -9,11 +9,12 @@ Put your EPICS IOCs here. This folder has been created from the standard EPICS t
 The resulting structure is organized as follows:
 
 - `./configure` -> The EPICS build scripts, comming from the EPICS distribution itself.
-- `./xxxIOC`    -> Your IOCs, one per folder:
+- `./ioc_xxx`   -> Your IOCs, one per folder:
     - `boot`    -> Boot scripts for the IOC, usually called `st.cmd`
     - `db`      -> EPICS database files. If you add additional support modules like `asyn`, you will need to reference them in the Makefile.
     - `src`     -> Source code of the IOC. If you add additional support modules like `asyn`, you will need to reference them in the Makefile.
     - `systemd` -> SystemD service files, to launch the IOCs as a SystemD service.
+- `./sup_xxx`   -> Additional support modules, one per folder.
 - `./target`    -> The output of the compilation process.
 - `Makefile`    -> The instructions to compile all the IOCs.
 
@@ -27,11 +28,13 @@ To compile the IOCs, please follow these instructions:
 
 The output artifacts will be located in the `target/` folder, one independent subfolder per IOC with the following structure:
 
-- `./bin`  -> The IOC binary.
-- `./boot` -> Boot scripts.
-- `./db`   -> EPICS database files, including the ones required for the support modules.
-- `./dbd`  -> EPICS record definition files, including the ones required for the support modules.
-- `./lib`  -> Additional libraries. Usually this folder is empty.
+| Folder   |                                                                                     |
+| -------- | ----------------------------------------------------------------------------------- |
+| `./bin`  | The IOC binary.                                                                     |
+| `./boot` | Boot scripts.                                                                       |
+| `./db`   | EPICS database files, including the ones required for the support modules.          |
+| `./dbd`  | EPICS record definition files, including the ones required for the support modules. |
+| `./lib`  | Additional libraries. Usually this folder is empty.                                 |
 
 ## Running IOCs
 
